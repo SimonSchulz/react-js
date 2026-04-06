@@ -27,6 +27,7 @@ export default function LoginPage() {
             const res = await login(form).unwrap();
             dispatch(setToken(res.token));
             navigate('/products');
+            //window.location.href = '/products';
         } catch (e) {
             if (e?.data?.message) {
                 setError(e.data.message);

@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom';
-import LoginPage from './pages/LoginPage';
-import ProductsPage from './pages/ProductsPage';
-import ProductDetailsPage from './pages/ProductDetailsPage';
 import ProtectedRoute from './components/ProtectedRoute';
-
+import {lazy} from "react";
+import LoginPage from "./pages/LoginPage";
+const ProductsPage = lazy(() => import('./pages/ProductsPage'));
+const ProductDetailsPage = lazy(() => import('./pages/ProductDetailsPage'));
 export const router = createBrowserRouter([
     {
         path: '/',
