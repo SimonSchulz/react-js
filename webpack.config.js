@@ -1,23 +1,17 @@
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-module.exports = {
+module.exports = (env, argv) => ({
     entry: './src/index.js',
 
-    mode: 'development',
+    mode: argv.mode || 'development',
 
-    devtool: 'source-map', // убирает eval warning
+    devtool: argv.mode === 'production' ? false : 'source-map',
 
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
         publicPath: '/'
-    },
-
-    devServer: {
-        historyApiFallback: true,
-        port: 3000,
-        open: true
     },
 
     module: {
@@ -39,4 +33,4 @@ module.exports = {
             template: './public/index.html'
         })
     ]
-};
+});
