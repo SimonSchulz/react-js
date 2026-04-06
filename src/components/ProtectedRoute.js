@@ -1,11 +1,10 @@
-import React from 'react';
+import { Navigate, Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import { Navigate } from 'react-router-dom';
 
-export default function ProtectedRoute({ children }) {
+export default function ProtectedRoute() {
     const token = useSelector((s) => s.auth.token);
 
     if (!token) return <Navigate to="/" />;
 
-    return children;
+    return <Outlet />;
 }

@@ -14,7 +14,7 @@ export const api = createApi({
             })
         }),
         getProducts: builder.query({
-            query: ({ limit = 10, skip = 0 }) =>
+            query: ({ limit = 12, skip = 0 }) =>
                 `products?limit=${limit}&skip=${skip}`
         }),
         getProduct: builder.query({

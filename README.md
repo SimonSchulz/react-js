@@ -38,30 +38,6 @@
 
 ---
 
-## 📂 Структура проекта
-
-```
-src/
-  app/
-    store.js
-    api.js
-  features/
-    auth/
-      authSlice.js
-  components/
-    ProtectedRoute.js
-  pages/
-    LoginPage.js
-    ProductsPage.js
-    ProductDetailsPage.js
-  styles/
-    global.css
-  App.js
-  index.js
-```
-
----
-
 ## ⚙️ Установка и запуск
 
 ### 1. Установка зависимостей
@@ -93,8 +69,8 @@ npm run build
 ## 🔑 Тестовый пользователь
 
 ```
-username: kminchelle
-password: 0lelplR
+username: emilys
+password: emilyspass
 ```
 
 ---
@@ -117,11 +93,9 @@ https://dummyjson.com/
 
 ## 📦 Деплой
 
-Проект может быть задеплоен на:
+Проект может задеплоен на:
 
 * Vercel
-* Netlify
-* GitHub Pages
 
 (ссылка на деплой добавляется после публикации)
 
@@ -138,12 +112,3 @@ https://dummyjson.com/
 
 ---
 
-## 📈 Возможные улучшения
-
-* Обработка ошибок (UI)
-* Loader / skeleton
-* Расширенная пагинация
-* Поиск и фильтрация
-* Улучшение UI/UX
-
----
