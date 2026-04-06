@@ -1,18 +1,59 @@
 body {
     margin: 0;
     font-family: sans-serif;
-    background: #f5f5f5;
+    background: #f4f6f8;
 }
 
+/* layout */
 .container {
     padding: 20px;
     max-width: 500px;
     margin: auto;
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
 }
 
+/* inputs */
+input {
+    padding: 10px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+}
+
+input:focus {
+    outline: none;
+    border-color: black;
+}
+
+/* buttons */
+button {
+    padding: 10px;
+    border-radius: 8px;
+    border: none;
+    background: black;
+    color: white;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    opacity: 0.85;
+}
+
+button.secondary {
+    background: #ddd;
+    color: black;
+}
+
+/* error */
+.error {
+    color: red;
+    font-size: 14px;
+}
+
+/* grid */
 .grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
@@ -20,17 +61,19 @@ body {
     padding: 20px;
 }
 
+/* card */
 .card {
     background: white;
-    border-radius: 10px;
-    padding: 10px;
+    border-radius: 12px;
+    padding: 12px;
     text-decoration: none;
     color: black;
     transition: 0.2s;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
 }
 
 .card:hover {
-    transform: scale(1.03);
+    transform: translateY(-3px);
 }
 
 .card img {
@@ -38,6 +81,15 @@ body {
     border-radius: 8px;
 }
 
+/* header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+/* pagination */
 .pagination {
     display: flex;
     justify-content: center;
@@ -45,20 +97,43 @@ body {
     padding: 20px;
 }
 
-button {
-    padding: 8px 12px;
-    border: none;
-    background: black;
-    color: white;
-    cursor: pointer;
-}
-
+/* responsive */
 @media (max-width: 600px) {
     .grid {
         grid-template-columns: 1fr;
     }
 }
-.error {
-    color: red;
-    font-size: 14px;
+
+.skeleton {
+    background: linear-gradient(90deg, #eee, #ddd, #eee);
+    animation: shimmer 1.2s infinite;
+    border-radius: 10px;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200px 0; }
+    100% { background-position: 200px 0; }
+}
+
+.skeleton-card {
+    height: 180px;
+}
+
+/* error box */
+.error-box {
+    background: #ffe5e5;
+    color: #b00020;
+    padding: 10px;
+    border-radius: 8px;
+    margin: 20px;
+    text-align: center;
+}
+
+/* search */
+.search {
+    padding: 0 20px;
+}
+
+.search input {
+    width: 100%;
 }
