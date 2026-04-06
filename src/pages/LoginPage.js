@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { useLoginMutation } from '../app/api';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../auth/authSlice';
+import {useNavigate} from "react-router-dom";
 
 export default function LoginPage() {
     const [login] = useLoginMutation();
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         username: 'emilys',
         password: 'emilyspass'
@@ -25,7 +26,7 @@ export default function LoginPage() {
         try {
             const res = await login(form).unwrap();
             dispatch(setToken(res.token));
-            window.location.href = '/products';
+            navigate('/products');
         } catch (e) {
             if (e?.data?.message) {
                 setError(e.data.message);
