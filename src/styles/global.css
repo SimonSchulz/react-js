@@ -58,3 +58,7 @@ button {
         grid-template-columns: 1fr;
     }
 }
+.error {
+    color: red;
+    font-size: 14px;
+}
