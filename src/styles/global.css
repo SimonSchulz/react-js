@@ -4,17 +4,21 @@ body {
     background: #f4f6f8;
 }
 
-/* layout */
 .container {
     padding: 20px;
-    max-width: 500px;
-    margin: auto;
+    max-width: 80%;
+    margin: 0 auto;
     display: flex;
     flex-direction: column;
     gap: 12px;
-}
 
-/* inputs */
+}
+.container img {
+    width: 100%;
+    height: auto;
+    max-height: 450px;
+    object-fit: contain;
+}
 input {
     padding: 10px;
     border-radius: 8px;
@@ -27,7 +31,6 @@ input:focus {
     border-color: black;
 }
 
-/* buttons */
 button {
     padding: 10px;
     border-radius: 8px;
@@ -43,17 +46,16 @@ button:hover {
 }
 
 button.secondary {
+    width: 20%;
     background: #ddd;
     color: black;
 }
 
-/* error */
 .error {
     color: red;
     font-size: 14px;
 }
 
-/* header */
 .header {
     display: flex;
     justify-content: space-between;
@@ -61,7 +63,6 @@ button.secondary {
     padding: 15px 20px;
 }
 
-/* search */
 .search {
     width: 60%;
     margin: auto;
@@ -71,18 +72,14 @@ button.secondary {
     width: 100%;
 }
 
-/* grid */
 .grid {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 20px;
-
-    max-width: 1000px;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 90%;
+    margin: 2rem auto;
 }
 
-/* card */
 .card {
     background: white;
     border-radius: 12px;
@@ -91,7 +88,6 @@ button.secondary {
     color: black;
     transition: 0.2s;
     box-shadow: 0 2px 6px rgba(0,0,0,0.05);
-
     max-width: 250px;
     margin: 0 auto;
 }
@@ -104,16 +100,22 @@ button.secondary {
     width: 100%;
     border-radius: 8px;
 }
-
-/* pagination */
+.card-content {
+    display: flex;
+    height: 40%;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .pagination {
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 20px;
 }
+.pagination button {
+    width: 10%;
+}
 
-/* skeleton */
 .skeleton {
     background: linear-gradient(90deg, #eee, #ddd, #eee);
     background-size: 200px 100%;
@@ -130,7 +132,6 @@ button.secondary {
     height: 180px;
 }
 
-/* error box */
 .error-box {
     background: #ffe5e5;
     color: #b00020;
@@ -140,7 +141,6 @@ button.secondary {
     text-align: center;
 }
 
-/* responsive */
 @media (max-width: 900px) {
     .grid {
         grid-template-columns: repeat(3, 1fr);

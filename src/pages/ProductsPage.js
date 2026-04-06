@@ -1,59 +1,43 @@
-import React, { useState } from 'react';
-import { useGetProductsQuery } from '../app/api';
-import { Link } from 'react-router-dom';
-import Header from '../components/Header';
-import SkeletonCard from '../components/SkeletonCard';
-import SearchBar from '../components/SearchBar';
+import React, { useState, useMemo } from 'react'
+import { useGetProductsQuery } from '../app/api'
+import Header from '../components/Header'
+import SearchBar from '../components/SearchBar'
+import Pagination from "../components/Pagination";
+import ProductsList from "../components/ProductsList";
+import SkeletonList from "../components/SkeletonList";
+
 
 export default function ProductsPage() {
-    const [page, setPage] = useState(0);
-    const [search, setSearch] = useState('');
+    const [page, setPage] = useState(0)
+    const [search, setSearch] = useState('')
 
     const { data, isLoading, error } = useGetProductsQuery({
-        limit: 10,
-        skip: page * 10
-    });
+        limit: 12,
+        skip: page * 12
+    })
 
-    const filtered =
-        data?.products.filter((p) =>
+    const filtered = useMemo(() => {
+        return data?.products.filter((p) =>
             p.title.toLowerCase().includes(search.toLowerCase())
-        ) || [];
+        ) || []
+    }, [data, search])
 
     return (
         <div>
             <Header />
-
             <SearchBar value={search} onChange={setSearch} />
 
             {error && <div className="error-box">Error loading products</div>}
 
             <div className="grid">
-                {isLoading
-                    ? Array.from({ length: 6 }).map((_, i) => (
-                        <SkeletonCard key={i} />
-                    ))
-                    : filtered.map((p) => (
-                        <Link key={p.id} to={`/products/${p.id}`} className="card">
-                            <img src={p.thumbnail} />
-                            <h3>{p.title}</h3>
-                            <p>${p.price}</p>
-                        </Link>
-                    ))}
+                {isLoading ? (
+                    <SkeletonList />
+                ) : (
+                    <ProductsList products={filtered} />
+                )}
             </div>
 
-            <div className="pagination">
-                <button
-                    className="secondary"
-                    onClick={() => setPage((p) => p - 1)}
-                    disabled={page === 0}
-                >
-                    Prev
-                </button>
-
-                <button onClick={() => setPage((p) => p + 1)}>
-                    Next
-                </button>
-            </div>
+            <Pagination page={page} setPage={setPage} />
         </div>
-    );
+    )
 }

@@ -11,7 +11,7 @@ module.exports = (env, argv) => ({
     output: {
         path: path.resolve(__dirname, 'dist'),
         filename: 'bundle.js',
-        publicPath: './'
+        publicPath: '/'
     },
 
     module: {
@@ -26,6 +26,15 @@ module.exports = (env, argv) => ({
                 use: ['style-loader', 'css-loader']
             }
         ]
+    },
+
+    devServer: {
+        historyApiFallback: true,
+        port: 3000,
+        open: true,
+        static: {
+            directory: path.join(__dirname, 'dist')
+        }
     },
 
     plugins: [

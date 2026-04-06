@@ -17,7 +17,6 @@ export default function LoginPage() {
     const handleSubmit = async () => {
         setError(null);
 
-        // простая валидация
         if (!form.username || !form.password) {
             setError('Please fill all fields');
             return;
