@@ -11,14 +11,20 @@ export default class ErrorBoundary extends React.Component {
     }
 
     componentDidCatch(error, errorInfo) {
-        console.log('ErrorBoundary:', error, errorInfo);
+        this.state ={...this.state, error, errorInfo};
     }
 
     render() {
         if (this.state.hasError) {
-            return <h2>Something went wrong</h2>;
+            return (
+                <div style={{ textAlign: 'center', marginTop: 50 }}>
+                    <h2>Something went wrong</h2>
+                    <button onClick={() => window.location.reload()}>
+                        Reload
+                    </button>
+                </div>
+            );
         }
-
         return this.props.children;
     }
 }

@@ -35,7 +35,6 @@ export default function ProductsPage() {
     }, {
         skip: !isSearching
     });
-
     const data = isSearching ? searchData : defaultData;
     const isLoading = isSearching ? isLoadingSearch : isLoadingDefault;
     return (
