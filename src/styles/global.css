@@ -102,7 +102,6 @@ button.secondary {
 }
 .card-content {
     display: flex;
-    height: 40%;
     flex-direction: column;
     justify-content: space-between;
 }

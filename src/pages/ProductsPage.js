@@ -3,10 +3,10 @@ import {
     useGetProductsQuery,
     useGetProductsSearchQuery
 } from '../app/api';
-import { Link } from 'react-router-dom';
 import Header from '../components/Header';
-import SkeletonCard from '../components/SkeletonCard';
 import SearchBar from '../components/SearchBar';
+import ProductsList from "../components/ProductsList";
+import SkeletonList from "../components/SkeletonList";
 
 export default function ProductsPage() {
     const limitNumber = 24;
@@ -47,16 +47,9 @@ export default function ProductsPage() {
             )}
             <div className="grid">
                 {isLoading
-                    ? Array.from({ length: 6 }).map((_, i) => (
-                        <SkeletonCard key={i} />
-                    ))
-                    : data?.products?.map((p) => (
-                        <Link key={p.id} to={`/products/${p.id}`} className="card">
-                            <img src={p.thumbnail} />
-                            <h3>{p.title}</h3>
-                            <p>${p.price}</p>
-                        </Link>
-                    ))}
+                    ? <SkeletonList/>
+                    : <ProductsList products={data?.products} />
+                    }
             </div>
             <div className="pagination">
                 <button
