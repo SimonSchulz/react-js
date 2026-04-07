@@ -19,12 +19,17 @@ export const api = createApi({
         }),
         getProduct: builder.query({
             query: (id) => `products/${id}`
-        })
+        }),
+        getProductsSearch: builder.query({
+            query: ({ q, limit = 10, skip = 0 }) =>
+                `products/search?q=${q}&limit=${limit}&skip=${skip}`
+        }),
     })
 });
 
 export const {
     useLoginMutation,
     useGetProductsQuery,
-    useGetProductQuery
+    useGetProductQuery,
+    useGetProductsSearchQuery,
 } = api;

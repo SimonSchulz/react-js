@@ -6,22 +6,23 @@
     "build": "webpack --mode production"
   },
   "dependencies": {
+    "@reduxjs/toolkit": "^2",
     "react": "^18",
     "react-dom": "^18",
+    "react-redux": "^9",
     "react-router-dom": "^7",
-    "@reduxjs/toolkit": "^2",
-    "react-redux": "^9"
+    "react-window": "^2.2.7"
   },
   "devDependencies": {
-    "webpack": "^5",
-    "webpack-cli": "^5",
-    "webpack-dev-server": "5.2.1",
-    "babel-loader": "^9",
     "@babel/core": "^7",
     "@babel/preset-env": "^7",
     "@babel/preset-react": "^7",
+    "babel-loader": "^9",
     "css-loader": "^6",
+    "html-webpack-plugin": "^5",
     "style-loader": "^3",
-    "html-webpack-plugin": "^5"
+    "webpack": "^5",
+    "webpack-cli": "^5",
+    "webpack-dev-server": "5.2.1"
   }
 }

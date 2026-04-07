@@ -1,43 +1,75 @@
-import React, { useState, useMemo } from 'react'
-import { useGetProductsQuery } from '../app/api'
-import Header from '../components/Header'
-import SearchBar from '../components/SearchBar'
-import Pagination from "../components/Pagination";
-import ProductsList from "../components/ProductsList";
-import SkeletonList from "../components/SkeletonList";
-
+import React, { useState, useDeferredValue } from 'react';
+import {
+    useGetProductsQuery,
+    useGetProductsSearchQuery
+} from '../app/api';
+import { Link } from 'react-router-dom';
+import Header from '../components/Header';
+import SkeletonCard from '../components/SkeletonCard';
+import SearchBar from '../components/SearchBar';
 
 export default function ProductsPage() {
-    const [page, setPage] = useState(0)
-    const [search, setSearch] = useState('')
+    const limitNumber = 24;
+    const [page, setPage] = useState(0);
+    const [search, setSearch] = useState('');
+    const deferredSearch = useDeferredValue(search);
+    const isSearching = deferredSearch.trim().length > 0;
 
-    const { data, isLoading, error } = useGetProductsQuery({
-        limit: 12,
-        skip: page * 12
-    })
+    const {
+        data: defaultData,
+        isLoading: isLoadingDefault
+    } = useGetProductsQuery({
+        limit: limitNumber,
+        skip: page * limitNumber
+    }, {
+        skip: isSearching
+    });
 
-    const filtered = useMemo(() => {
-        return data?.products.filter((p) =>
-            p.title.toLowerCase().includes(search.toLowerCase())
-        ) || []
-    }, [data, search])
+    const {
+        data: searchData,
+        isLoading: isLoadingSearch
+    } = useGetProductsSearchQuery({
+        q: deferredSearch,
+        limit: limitNumber,
+        skip: page * limitNumber
+    }, {
+        skip: !isSearching
+    });
 
+    const data = isSearching ? searchData : defaultData;
+    const isLoading = isSearching ? isLoadingSearch : isLoadingDefault;
     return (
         <div>
             <Header />
             <SearchBar value={search} onChange={setSearch} />
-
-            {error && <div className="error-box">Error loading products</div>}
-
+            {search !== deferredSearch && (
+                <p style={{ textAlign: 'center' }}>Searching...</p>
+            )}
             <div className="grid">
-                {isLoading ? (
-                    <SkeletonList />
-                ) : (
-                    <ProductsList products={filtered} />
-                )}
+                {isLoading
+                    ? Array.from({ length: 6 }).map((_, i) => (
+                        <SkeletonCard key={i} />
+                    ))
+                    : data?.products?.map((p) => (
+                        <Link key={p.id} to={`/products/${p.id}`} className="card">
+                            <img src={p.thumbnail} />
+                            <h3>{p.title}</h3>
+                            <p>${p.price}</p>
+                        </Link>
+                    ))}
             </div>
-
-            <Pagination page={page} setPage={setPage} />
+            <div className="pagination">
+                <button
+                    className="secondary"
+                    onClick={() => setPage((p) => p - 1)}
+                    disabled={page === 0}
+                >
+                    Prev
+                </button>
+                <button onClick={() => setPage((p) => p + 1)} disabled={ limitNumber > (data?.products?.length || 0)}>
+                    Next
+                </button>
+            </div>
         </div>
-    )
+    );
 }

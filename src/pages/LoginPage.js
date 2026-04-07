@@ -1,13 +1,14 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useLoginMutation } from '../app/api';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setToken } from '../auth/authSlice';
-import {useNavigate} from "react-router-dom";
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
     const [login] = useLoginMutation();
     const dispatch = useDispatch();
     const navigate = useNavigate();
+
     const [form, setForm] = useState({
         username: 'emilys',
         password: 'emilyspass'
@@ -17,7 +18,6 @@ export default function LoginPage() {
 
     const handleSubmit = async () => {
         setError(null);
-
         if (!form.username || !form.password) {
             setError('Please fill all fields');
             return;
@@ -25,9 +25,8 @@ export default function LoginPage() {
 
         try {
             const res = await login(form).unwrap();
-            dispatch(setToken(res.token));
+            dispatch(setToken(res.accessToken));
             navigate('/products');
-            //window.location.href = '/products';
         } catch (e) {
             if (e?.data?.message) {
                 setError(e.data.message);
