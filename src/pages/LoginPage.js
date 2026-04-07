@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useLoginMutation } from '../app/api';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setToken } from '../auth/authSlice';
 import { useNavigate } from 'react-router-dom';
 
