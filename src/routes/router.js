@@ -3,11 +3,13 @@ import ProtectedRoute from './ProtectedRoute';
 import {lazy} from "react";
 import LoginPage from "../pages/LoginPage";
 import RouteError from "./RouteError";
+import Layout from "../components/Layout";
 const ProductsPage = lazy(() => import('../pages/ProductsPage'));
 const ProductDetailsPage = lazy(() => import('../pages/ProductDetailsPage'));
 const ProfilePage = lazy(() => import('../pages/ProfilePage'));
 export const router = createBrowserRouter([
     {
+        element: <Layout/>,
         errorElement: <RouteError />,
         children: [
             {

@@ -9,7 +9,7 @@ import ProductsList from "../components/ProductsList";
 import SkeletonList from "../components/SkeletonList";
 
 export default function ProductsPage() {
-    const limitNumber = 24;
+    const limitNumber = 15;
     const [page, setPage] = useState(0);
     const [search, setSearch] = useState('');
     const deferredSearch = useDeferredValue(search);
@@ -39,7 +39,6 @@ export default function ProductsPage() {
     const isLoading = isSearching ? isLoadingSearch : isLoadingDefault;
     return (
         <div>
-            <Header />
             <SearchBar value={search} onChange={setSearch} />
             {search !== deferredSearch && (
                 <p style={{ textAlign: 'center' }}>Searching...</p>

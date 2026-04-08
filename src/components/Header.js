@@ -8,17 +8,16 @@ export default function Header() {
     const user = useSelector((s) => s.auth.user);
     const dispatch = useDispatch();
     const navigate = useNavigate();
-
     const handleLogout = () => {
         dispatch(logout());
         navigate('/');
     };
     return (
         <header className="header">
+            {token && <button onClick={handleLogout}>Logout</button>}
             <h1 onClick={() => navigate('/products')}>Products App</h1>
             {token && (
                 <div className="header-right">
-                    <button onClick={handleLogout}>Logout</button>
                     <div
                         className="user"
                         onClick={() => navigate('/profile')}
