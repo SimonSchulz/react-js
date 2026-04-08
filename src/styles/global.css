@@ -4,6 +4,90 @@ body {
     background: #f4f6f8;
 }
 
+main {
+    min-height: 80vh;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    background: #111;
+    color: white;
+}
+
+.header h1 {
+    cursor: pointer;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+}
+
+.user img {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+}
+
+.footer {
+    padding: 16px;
+    text-align: center;
+    background: #111;
+    color: white;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.footer a {
+    color: white;
+    text-decoration: none;
+}
+
+.login-layout {
+    display: flex;
+    height: 100vh;
+}
+
+.login-info {
+    flex: 2;
+    background: linear-gradient(135deg, #222, #444);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.login-info h1 {
+    font-size: 36px;
+}
+
+.login-form {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 40px;
+    background: white;
+}
+
 .container {
     padding: 20px;
     max-width: 400px;
@@ -12,15 +96,11 @@ body {
     flex-direction: column;
     gap: 12px;
 }
+
 .container h2 {
     align-self: center;
 }
-.container img {
-    width: 100%;
-    height: auto;
-    max-height: 450px;
-    object-fit: contain;
-}
+
 input {
     padding: 10px;
     border-radius: 8px;
@@ -48,26 +128,13 @@ button:hover {
 }
 
 button.secondary {
-    width: 20%;
     background: #ddd;
     color: black;
 }
 
-.error {
-    color: red;
-    font-size: 14px;
-}
-
-.header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 20px;
-}
-
 .search {
     width: 60%;
-    margin: auto;
+    margin: 20px auto;
 }
 
 .search input {
@@ -102,19 +169,31 @@ button.secondary {
     width: 100%;
     border-radius: 8px;
 }
-.card-content {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
+
 .pagination {
     display: flex;
     justify-content: center;
     gap: 10px;
     padding: 20px;
 }
+
 .pagination button {
-    width: 10%;
+    min-width: 100px;
+}
+
+.profile {
+    max-width: 600px;
+    margin: 40px auto;
+    background: white;
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+}
+
+.profile img {
+    width: 120px;
+    border-radius: 50%;
+    margin-bottom: 10px;
 }
 
 .skeleton {
@@ -131,6 +210,11 @@ button.secondary {
 
 .skeleton-card {
     height: 180px;
+}
+
+.error {
+    color: red;
+    font-size: 14px;
 }
 
 .error-box {
@@ -151,6 +235,14 @@ button.secondary {
 @media (max-width: 600px) {
     .grid {
         grid-template-columns: repeat(2, 1fr);
+    }
+
+    .login-layout {
+        flex-direction: column;
+    }
+
+    .login-info {
+        height: 40%;
     }
 }
 

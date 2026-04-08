@@ -3,7 +3,14 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const api = createApi({
     reducerPath: 'api',
     baseQuery: fetchBaseQuery({
-        baseUrl: 'https://dummyjson.com/'
+        baseUrl: 'https://dummyjson.com/',
+        prepareHeaders: (headers, { getState }) => {
+            const token = getState().auth.token;
+            if (token) {
+                headers.set('Authorization', `Bearer ${token}`);
+            }
+            return headers;
+        }
     }),
     endpoints: (builder) => ({
         login: builder.mutation({
@@ -24,6 +31,9 @@ export const api = createApi({
             query: ({ q, limit = 10, skip = 0 }) =>
                 `products/search?q=${q}&limit=${limit}&skip=${skip}`
         }),
+        getMe: builder.query({
+            query: () => 'auth/me'
+        })
     })
 });
 
@@ -32,4 +42,5 @@ export const {
     useGetProductsQuery,
     useGetProductQuery,
     useGetProductsSearchQuery,
+    useGetMeQuery,
 } = api;

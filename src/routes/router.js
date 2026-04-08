@@ -5,6 +5,7 @@ import LoginPage from "../pages/LoginPage";
 import RouteError from "./RouteError";
 const ProductsPage = lazy(() => import('../pages/ProductsPage'));
 const ProductDetailsPage = lazy(() => import('../pages/ProductDetailsPage'));
+const ProfilePage = lazy(() => import('../pages/ProfilePage'));
 export const router = createBrowserRouter([
     {
         errorElement: <RouteError />,
@@ -23,6 +24,9 @@ export const router = createBrowserRouter([
                     {
                         path: '/products/:id',
                         element: <ProductDetailsPage />
+                    },
+                    {   path: '/profile',
+                        element: <ProfilePage />
                     }
                 ]
             }
