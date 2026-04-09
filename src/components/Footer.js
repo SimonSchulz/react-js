@@ -6,8 +6,8 @@ export default function Footer() {
             <p>Welcome to our platform 🚀</p>
             <div className="footer-links">
                 <a href="#">Telegram</a>
-                <a href="#">LinkedIn</a>
-                <a href="#">GitHub</a>
+                <a href="#">Instagram</a>
+                <a href="#">Facebook</a>
             </div>
         </footer>
     );

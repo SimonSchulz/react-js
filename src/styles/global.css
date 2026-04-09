@@ -179,7 +179,7 @@ button.secondary {
 .card {
     background: white;
     border-radius: 12px;
-    padding: 12px;
+    padding: 0 12px;
     text-decoration: none;
     color: black;
     transition: 0.2s;
@@ -190,6 +190,10 @@ button.secondary {
 
 .card:hover {
     transform: translateY(-3px);
+}
+.card h3 {
+    max-height: 25px;
+    overflow: hidden;
 }
 
 .card img {
