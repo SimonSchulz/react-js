@@ -193,7 +193,7 @@ button.secondary {
     transform: translateY(-3px);
 }
 .card h3 {
-    max-height: 22px;
+    max-height: 1.4rem;
     overflow: hidden;
 }
 
@@ -304,8 +304,8 @@ button.secondary {
         font-size: 1rem;
     }
 
-    .login-layout {
-        flex-direction: column;
+    .login-info {
+        display: none;
     }
 }
 

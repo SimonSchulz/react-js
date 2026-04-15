@@ -2,11 +2,12 @@ import React, { useState, useEffect } from 'react';
 import { useLoginMutation } from '../app/api';
 import { useDispatch } from 'react-redux';
 import { setToken, setUser } from '../auth/authSlice';
+import {useNavigate} from "react-router-dom";
 
 export default function LoginPage() {
     const [login] = useLoginMutation();
     const dispatch = useDispatch();
-
+    const navigate = useNavigate();
     const [form, setForm] = useState({
         username: 'emilys',
         password: 'emilyspass'
@@ -29,20 +30,19 @@ export default function LoginPage() {
         return () => clearInterval(interval);
     }, []);
 
-    const handleSubmit = async () => {
+    const handleSubmit = async (e) => {
+        e.preventDefault();
         setError(null);
         try {
             const res = await login(form).unwrap();
 
             dispatch(setToken(res.accessToken));
             dispatch(setUser(res));
-
-            window.location.href = '/products';
+            navigate('/products');
         } catch (e) {
             setError('Login failed');
         }
     };
-
     return (
         <div className="login-layout">
             <div className="login-info">
@@ -67,9 +67,8 @@ export default function LoginPage() {
                     </div>
                 </div>
             </div>
-            <div className="login-form">
+            <form className="login-form"  onSubmit={handleSubmit}>
                 <h2>Login</h2>
-
                 <input
                     value={form.username}
                     name="username"
@@ -88,8 +87,8 @@ export default function LoginPage() {
                     placeholder="Password"
                 />
                 {error && <p className="error">{error}</p>}
-                <button onClick={handleSubmit}>Login</button>
-            </div>
+                <button type="submit">Login</button>
+            </form>
         </div>
     );
 }

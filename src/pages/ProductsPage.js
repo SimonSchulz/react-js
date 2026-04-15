@@ -3,7 +3,6 @@ import {
     useGetProductsQuery,
     useGetProductsSearchQuery
 } from '../app/api';
-import Header from '../components/Header';
 import SearchBar from '../components/SearchBar';
 import ProductsList from "../components/ProductsList";
 import SkeletonList from "../components/SkeletonList";
