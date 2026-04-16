@@ -1,7 +1,7 @@
 import SkeletonCard from './SkeletonCard'
 
-export default function SkeletonList() {
-    return Array.from({ length: 12 }).map((_, i) => (
+export default function SkeletonList({limit}) {
+    return Array.from({ length: limit }).map((_, i) => (
         <SkeletonCard key={i} />
     ))
 }

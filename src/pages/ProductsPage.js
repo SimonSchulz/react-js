@@ -45,7 +45,7 @@ export default function ProductsPage() {
             )}
             <div className="grid">
                 {isLoading
-                    ? <SkeletonList/>
+                    ? <SkeletonList limit={limitNumber} />
                     : <ProductsList products={data?.products} />
                     }
             </div>

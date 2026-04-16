@@ -199,7 +199,7 @@ button.secondary {
 
 .card img {
     width: 100%;
-    height: auto;
+    min-height: 250px;
     border-radius: 8px;
 }
 
@@ -271,7 +271,7 @@ button.secondary {
 }
 
 .skeleton-card {
-    height: 180px;
+    min-height: 250px;
 }
 
 .error {
