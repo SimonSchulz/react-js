@@ -1,4 +1,4 @@
-import React, { useState, useDeferredValue } from 'react';
+import React, { useState } from 'react';
 import {
     useGetProductsQuery,
     useGetProductsSearchQuery
@@ -6,13 +6,14 @@ import {
 import SearchBar from '../components/SearchBar';
 import ProductsList from "../components/ProductsList";
 import SkeletonList from "../components/SkeletonList";
+import useDebounce from "../hooks/useDebounce";
 
 export default function ProductsPage() {
     const limitNumber = 15;
     const [page, setPage] = useState(0);
     const [search, setSearch] = useState('');
-    const deferredSearch = useDeferredValue(search);
-    const isSearching = deferredSearch.trim().length > 0;
+    const debouncedSearch = useDebounce(search, 500);
+    const isSearching = debouncedSearch.trim().length > 0;
 
     const {
         data: defaultData,
@@ -28,7 +29,7 @@ export default function ProductsPage() {
         data: searchData,
         isLoading: isLoadingSearch
     } = useGetProductsSearchQuery({
-        q: deferredSearch,
+        q: debouncedSearch,
         limit: limitNumber,
         skip: page * limitNumber
     }, {
@@ -39,7 +40,7 @@ export default function ProductsPage() {
     return (
         <div>
             <SearchBar value={search} onChange={setSearch} />
-            {search !== deferredSearch && (
+            {search !== debouncedSearch && (
                 <p style={{ textAlign: 'center' }}>Searching...</p>
             )}
             <div className="grid">
